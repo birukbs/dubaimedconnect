@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dubai MedConnect — Clinic Growth & Medical Tourism</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --deep: #085041;
+  --mid: #0F6E56;
+  --bright: #1D9E75;
+  --light: #5DCAA5;
+  --pale: #E1F5EE;
+  --navy: #042C53;
+  --white: #FAFDF9;
+  --gray: #F4F7F5;
+  --text: #1A2E26;
+  --muted: #5A7A6E;
+  --border: rgba(13,110,86,0.15);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(250,253,249,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo svg { width: 36px; height: 36px; }
+.nav-wordmark { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: var(--deep); }
+.nav-wordmark span { color: var(--bright); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--mid); }
+.nav-cta {
+  background: var(--mid); color: white; font-size: 13px; font-weight: 500;
+  padding: 8px 20px; border-radius: 100px; text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--deep); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 2.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(29,158,117,0.08) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 40% at 10% 80%, rgba(8,80,65,0.06) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+  background-image: linear-gradient(var(--mid) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--mid) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content { position: relative; z-index: 1; max-width: 680px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  color: var(--mid); text-transform: uppercase;
+  background: var(--pale); padding: 6px 14px; border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--bright); display: block;
+}
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.15;
+  color: var(--deep);
+  margin-bottom: 1.25rem;
+}
+h1 em { font-style: italic; color: var(--bright); }
+.hero-sub {
+  font-size: 18px; color: var(--muted); font-weight: 300;
+  max-width: 540px; margin-bottom: 2.5rem; line-height: 1.8;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--mid); color: white;
+  padding: 14px 28px; border-radius: 100px;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--deep); transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); color: var(--mid);
+  padding: 14px 28px; border-radius: 100px;
+  font-size: 15px; text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-secondary:hover { background: var(--pale); }
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3.5rem;
+  padding-top: 2rem; border-top: 0.5px solid var(--border);
+  flex-wrap: wrap;
+}
+.stat-item {}
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--deep); }
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* SECTION SHARED */
+section { padding: 5rem 2.5rem; }
+.section-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--bright); margin-bottom: 0.75rem;
+}
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--deep); line-height: 1.2; margin-bottom: 1rem;
+}
+h2 em { font-style: italic; color: var(--bright); }
+.section-sub { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.8; }
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* SERVICES */
+.services { background: var(--gray); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 3rem;
+}
+.service-card {
+  background: white; border-radius: 16px;
+  border: 0.5px solid var(--border); padding: 2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.service-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(8,80,65,0.08); }
+.service-icon {
+  width: 48px; height: 48px; background: var(--pale);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.service-icon svg { width: 24px; height: 24px; }
+.service-card h3 {
+  font-family: 'DM Serif Display', serif; font-size: 1.3rem;
+  color: var(--deep); margin-bottom: 0.75rem;
+}
+.service-card p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: 11px; font-weight: 500; padding: 4px 10px;
+  border-radius: 100px; background: var(--pale); color: var(--mid);
+}
+
+/* HOW IT WORKS */
+.how-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem;
+}
+.how-col h3 {
+  font-family: 'DM Serif Display', serif; font-size: 1.2rem;
+  color: var(--deep); margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.step {
+  display: flex; gap: 1rem; margin-bottom: 1.5rem;
+}
+.step-num {
+  width: 28px; height: 28px; min-width: 28px;
+  background: var(--pale); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500; color: var(--mid); margin-top: 2px;
+}
+.step-body h4 { font-size: 14px; font-weight: 500; color: var(--deep); margin-bottom: 3px; }
+.step-body p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* DESTINATIONS */
+.destinations { background: var(--deep); color: white; }
+.destinations .section-label { color: var(--light); }
+.destinations h2 { color: white; }
+.destinations h2 em { color: var(--light); }
+.destinations .section-sub { color: rgba(255,255,255,0.6); }
+.dest-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.dest-card {
+  border: 0.5px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 2rem;
+  transition: background 0.2s;
+}
+.dest-card:hover { background: rgba(255,255,255,0.05); }
+.dest-flag { font-size: 2rem; margin-bottom: 1rem; }
+.dest-card h3 {
+  font-family: 'DM Serif Display', serif; font-size: 1.4rem;
+  color: white; margin-bottom: 0.5rem;
+}
+.dest-card .dest-sub { font-size: 13px; color: var(--light); margin-bottom: 1rem; font-weight: 500; }
+.dest-card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 1.25rem; }
+.dest-specs { display: flex; flex-direction: column; gap: 6px; }
+.dest-spec { font-size: 13px; color: rgba(255,255,255,0.5); display: flex; gap: 8px; }
+.dest-spec::before { content: '→'; color: var(--light); }
+
+/* PACKAGES */
+.packages-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem; margin-top: 3rem;
+}
+.pkg-card {
+  background: white; border: 0.5px solid var(--border);
+  border-radius: 16px; padding: 1.75rem; position: relative;
+}
+.pkg-card.featured { border: 2px solid var(--bright); }
+.pkg-badge {
+  position: absolute; top: -12px; left: 1.25rem;
+  background: var(--bright); color: white;
+  font-size: 11px; font-weight: 500; padding: 3px 12px; border-radius: 100px;
+}
+.pkg-name { font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.pkg-price { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--deep); }
+.pkg-period { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; }
+.pkg-divider { height: 0.5px; background: var(--border); margin: 1rem 0; }
+.pkg-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.pkg-features li { font-size: 13px; color: var(--text); display: flex; gap: 8px; }
+.pkg-features li::before { content: '✓'; color: var(--bright); font-weight: 500; min-width: 14px; }
+
+/* ABOUT */
+.about { background: var(--gray); }
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.about-text h2 { margin-bottom: 1rem; }
+.about-text p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.about-creds { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+.cred {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text);
+}
+.cred-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bright); min-width: 6px; }
+.about-license {
+  background: white; border: 0.5px solid var(--border); border-radius: 16px; padding: 2rem;
+}
+.license-header { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+.license-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--border); font-size: 13px; }
+.license-row:last-child { border-bottom: none; }
+.license-row span:first-child { color: var(--muted); }
+.license-row span:last-child { font-weight: 500; color: var(--deep); }
+
+/* CONTACT */
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+}
+.contact-info h2 { margin-bottom: 1rem; }
+.contact-info p { font-size: 15px; color: var(--muted); margin-bottom: 2rem; line-height: 1.8; }
+.contact-channels { display: flex; flex-direction: column; gap: 1rem; }
+.channel {
+  display: flex; align-items: center; gap: 12px;
+  padding: 1rem 1.25rem; background: var(--gray); border-radius: 12px;
+  text-decoration: none; transition: background 0.2s;
+}
+.channel:hover { background: var(--pale); }
+.channel-icon {
+  width: 36px; height: 36px; background: var(--pale); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.channel-icon svg { width: 18px; height: 18px; }
+.channel-label { font-size: 11px; color: var(--muted); }
+.channel-value { font-size: 14px; font-weight: 500; color: var(--deep); }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 12px; font-weight: 500; color: var(--muted); }
+.form-group input, .form-group select, .form-group textarea {
+  padding: 10px 14px; border: 0.5px solid var(--border); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+  background: white; outline: none; transition: border-color 0.2s;
+  resize: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--bright);
+}
+.form-submit {
+  background: var(--mid); color: white; border: none; cursor: pointer;
+  padding: 14px; border-radius: 100px; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 500; transition: background 0.2s;
+}
+.form-submit:hover { background: var(--deep); }
+
+/* FOOTER */
+footer {
+  background: var(--deep); color: rgba(255,255,255,0.5);
+  padding: 2rem 2.5rem; font-size: 13px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+footer a { color: var(--light); text-decoration: none; }
+
+/* LOGO SVG inline */
+.logo-mark { display: flex; align-items: center; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; }
+  section { padding: 3.5rem 1.25rem; }
+  .hero { padding: 7rem 1.25rem 3.5rem; }
+  .how-grid, .dest-grid, .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-content > * {
+  animation: fadeUp 0.6s ease forwards;
+  opacity: 0;
+}
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="20" r="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+      <circle cx="24" cy="20" r="4" fill="#0F6E56"/>
+      <path d="M24 30 L24 44" stroke="#0F6E56" stroke-width="2" stroke-linecap="round"/>
+      <path d="M6 26 L13 26 L16 20 L20 32 L24 16 L28 26 L33 26 L42 26" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-wordmark">Dubai<span>Med</span>Connect</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">For clinics &amp; medical practices in the UAE</div>
+    <h1>Grow your clinic.<br/><em>Connect globally.</em></h1>
+    <p class="hero-sub">We help UAE medical practices build a professional digital presence and connect with patients from around the world — inbound medical tourism and outbound referrals to Turkey, all in one place.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Partner with us
+      </a>
+      <a href="#services" class="btn-secondary">See what we do →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">72hr</div>
+        <div class="stat-label">Website live guarantee</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Revenue streams per clinic</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">US · EU · GCC</div>
+        <div class="stat-label">Patient source markets</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">What we do</div>
+    <h2>Two services, one <em>partner</em></h2>
+    <p class="section-sub">Whether you need more patients or a stronger digital presence — or both — MedConnect delivers it end to end.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>
+          </svg>
+        </div>
+        <h3>Medical tourism brokerage</h3>
+        <p>We connect your clinic to high-value patients from the US, EU, and GCC actively seeking treatment in Dubai — and refer UAE residents to specialist facilities in Turkey for procedures like cosmetic surgery, dental, and hair restoration.</p>
+        <div class="service-tags">
+          <span class="tag">Inbound patients</span>
+          <span class="tag">Turkey outbound</span>
+          <span class="tag">Referral network</span>
+          <span class="tag">Multi-language</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+          </svg>
+        </div>
+        <h3>Clinic digital presence</h3>
+        <p>Most Dubai clinics are losing patients to competitors who are simply easier to find and book online. We build your website, Google Business profile, patient lead generation, and AI intake — all live within 72 hours.</p>
+        <div class="service-tags">
+          <span class="tag">Professional website</span>
+          <span class="tag">Google presence</span>
+          <span class="tag">Lead generation</span>
+          <span class="tag">AI patient intake</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Patient lead generation</h3>
+        <p>Targeted campaigns reaching patients in source markets who are actively researching treatment abroad. We qualify leads, handle initial inquiries in multiple languages, and deliver them ready to book.</p>
+        <div class="service-tags">
+          <span class="tag">Qualified leads</span>
+          <span class="tag">24/7 AI response</span>
+          <span class="tag">CRM handoff</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3>Performance reporting</h3>
+        <p>Monthly dashboard showing exactly how many leads came in, where they came from, conversion rates, and ROI on your digital spend. No guesswork — just numbers that tell you what's working.</p>
+        <div class="service-tags">
+          <span class="tag">Monthly reports</span>
+          <span class="tag">Lead attribution</span>
+          <span class="tag">ROI tracking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="section-label">Process</div>
+    <h2>How it <em>works</em></h2>
+    <p class="section-sub">Simple onboarding. Fast execution. Ongoing results.</p>
+    <div class="how-grid">
+      <div class="how-col">
+        <h3>For clinic digital services</h3>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Free digital audit</h4>
+            <p>We review your current online presence and identify exactly what's costing you patients — Google visibility, website gaps, missing booking flows.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Build and launch in 72 hours</h4>
+            <p>We build your full digital presence — website, Google Business, booking integration — and go live within three business days. Guaranteed.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Monthly lead gen and reporting</h4>
+            <p>We run ongoing campaigns and send you a monthly report showing leads, conversions, and performance. You focus on patients, we handle the pipeline.</p>
+          </div>
+        </div>
+      </div>
+      <div class="how-col">
+        <h3>For medical tourism referrals</h3>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Sign a referral partnership</h4>
+            <p>A straightforward agreement that defines the referral fee structure, patient flow process, and communication protocol between your clinic and MedConnect.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>We source and qualify patients</h4>
+            <p>We handle all inbound patient inquiries from US, EU, and GCC markets — pre-screening, treatment matching, and insurance/cost guidance before handoff.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>You receive ready-to-book patients</h4>
+            <p>Patients arrive at your clinic pre-informed, pre-qualified, and ready to proceed. We stay in the loop for follow-up and return referrals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinations">
+  <div class="container">
+    <div class="section-label">Medical tourism</div>
+    <h2>Dubai inbound. <em>Turkey outbound.</em></h2>
+    <p class="section-sub">Two of the world's leading medical tourism destinations — and we have access to both.</p>
+    <div class="dest-grid">
+      <div class="dest-card">
+        <div class="dest-flag">🇦🇪</div>
+        <h3>Dubai — inbound</h3>
+        <div class="dest-sub">Attracting patients from US, EU & GCC</div>
+        <p>Dubai has built a world-class healthcare infrastructure with JCI-accredited hospitals, English-speaking specialists, and zero waiting lists. It is one of the fastest-growing medical tourism destinations globally.</p>
+        <div class="dest-specs">
+          <div class="dest-spec">Specialties: oncology, cardiac, fertility, orthopedics</div>
+          <div class="dest-spec">Source markets: US, UK, Germany, Ethiopia, Nigeria</div>
+          <div class="dest-spec">Average patient spend: $8,000–$25,000 per visit</div>
+          <div class="dest-spec">DHCC and DHA licensed facilities</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-flag">🇹🇷</div>
+        <h3>Turkey — outbound</h3>
+        <div class="dest-sub">Cosmetic, dental & hair restoration referrals</div>
+        <p>Turkey is the global leader in cosmetic surgery, hair transplants, and dental veneers — with prices 60–80% lower than Dubai for equivalent quality. Demand from UAE residents is high and growing.</p>
+        <div class="dest-specs">
+          <div class="dest-spec">Specialties: rhinoplasty, hair transplant, veneers, liposuction</div>
+          <div class="dest-spec">Cost saving vs Dubai: 60–80% on cosmetic procedures</div>
+          <div class="dest-spec">Travel: 3.5hr direct flight from Dubai</div>
+          <div class="dest-spec">JCI-accredited partner clinics in Istanbul</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2>Simple, transparent <em>packages</em></h2>
+    <p class="section-sub">No hidden fees. No long contracts. Cancel anytime after the first 3 months.</p>
+    <div class="packages-grid">
+      <div class="pkg-card">
+        <div class="pkg-name">Starter</div>
+        <div class="pkg-price">AED 7,500</div>
+        <div class="pkg-period">one-time setup</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>5-page professional website</li>
+          <li>Google Business setup &amp; optimization</li>
+          <li>Online booking integration</li>
+          <li>Mobile-first, fast-loading</li>
+          <li>72-hour delivery guarantee</li>
+        </ul>
+      </div>
+      <div class="pkg-card featured">
+        <div class="pkg-badge">Most popular</div>
+        <div class="pkg-name">Growth</div>
+        <div class="pkg-price">AED 12,000</div>
+        <div class="pkg-period">setup + AED 2,000/mo</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Everything in Starter</li>
+          <li>Monthly patient lead generation</li>
+          <li>AI-powered patient intake bot</li>
+          <li>WhatsApp inquiry automation</li>
+          <li>Monthly performance report</li>
+          <li>Dedicated account manager</li>
+        </ul>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-name">Medical tourism</div>
+        <div class="pkg-price">Custom</div>
+        <div class="pkg-period">retainer-based</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Everything in Growth</li>
+          <li>Inbound patient referral pipeline</li>
+          <li>Turkey outbound referral network</li>
+          <li>Multi-language patient comms</li>
+          <li>US &amp; EU market targeting</li>
+          <li>Referral fee model available</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem; font-size:13px; color:var(--muted); text-align:center;">
+      Launch offer: first 5 clinics receive 30% off setup fees · <a href="#contact" style="color:var(--mid);">Contact us to claim</a>
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text">
+        <div class="section-label">About</div>
+        <h2>Built by healthcare <em>data experts</em></h2>
+        <p>Dubai MedConnect is operated by MedConnect Global Consulting LLC, a Sharjah Media City free zone company. Our team brings over 15 years of experience in healthcare data, digital infrastructure, and international health systems.</p>
+        <p>We have worked with organizations including the CDC and leading academic medical centers — and we apply that rigour to every clinic we partner with in the UAE.</p>
+        <div class="about-creds">
+          <div class="cred"><div class="cred-dot"></div>15+ years healthcare data and informatics experience</div>
+          <div class="cred"><div class="cred-dot"></div>HIPAA and GDPR-compliant data handling</div>
+          <div class="cred"><div class="cred-dot"></div>Collaborative experience with CDC and international research institutions</div>
+          <div class="cred"><div class="cred-dot"></div>Operations across UAE, US, and East Africa</div>
+        </div>
+      </div>
+      <div class="about-license">
+        <div class="license-header">Company details</div>
+        <div class="license-row"><span>Company</span><span>MedConnect Global Consulting LLC</span></div>
+        <div class="license-row"><span>License no.</span><span>2542589.01</span></div>
+        <div class="license-row"><span>Jurisdiction</span><span>Sharjah Media City Free Zone</span></div>
+        <div class="license-row"><span>License type</span><span>Limited Liability Company</span></div>
+        <div class="license-row"><span>Valid until</span><span>24 November 2026</span></div>
+        <div class="license-row"><span>Activities</span><span>IT consulting, AI research, digital services</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Contact</div>
+        <h2>Let's talk about your <em>clinic</em></h2>
+        <p>Whether you're interested in growing your patient base, building your digital presence, or joining our medical tourism network — we'd like to hear from you. We respond within a few hours.</p>
+        <div class="contact-channels">
+          <a href="https://wa.me/971553743597" class="channel" target="_blank">
+            <div class="channel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="channel-label">WhatsApp</div>
+              <div class="channel-value">+971 55 374 3597</div>
+            </div>
+          </a>
+          <a href="mailto:hello@dubaimedconnect.com" class="channel">
+            <div class="channel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="channel-label">Email</div>
+              <div class="channel-value">hello@dubaimedconnect.com</div>
+            </div>
+          </a>
+          <a href="#" class="channel">
+            <div class="channel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="channel-label">Location</div>
+              <div class="channel-value">Sharjah Media City, UAE</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Dr. Ahmed Al Mansoori" required/>
+          </div>
+          <div class="form-group">
+            <label>Clinic name</label>
+            <input type="text" placeholder="Al Noor Medical Centre" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" placeholder="info@yourclinic.ae" required/>
+        </div>
+        <div class="form-group">
+          <label>I am interested in</label>
+          <select>
+            <option>Digital presence (website + lead gen)</option>
+            <option>Medical tourism — inbound patients to Dubai</option>
+            <option>Medical tourism — outbound referrals to Turkey</option>
+            <option>All of the above</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (optional)</label>
+          <textarea rows="3" placeholder="Tell us about your clinic and what you're looking to achieve..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 MedConnect Global Consulting LLC · Sharjah Media City Free Zone · License 2542589.01</span>
+  <span>
+    <a href="mailto:hello@dubaimedconnect.com">hello@dubaimedconnect.com</a> ·
+    <a href="https://wa.me/971553743597">+971 55 374 3597</a>
+  </span>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sent! We will be in touch shortly.';
+  btn.style.background = '#085041';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
